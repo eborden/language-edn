@@ -104,7 +104,7 @@ mapOf = Map . HashMap.fromList . pairs
  where
   pairs [] = []
   pairs (k:v:xs) = (k, v):pairs xs
-  pairs _ = []
+  pairs [k] = [(k, Nil)]
 
 key :: EDN -> Traversal' EDN EDN
 key k = _Map . ix k
