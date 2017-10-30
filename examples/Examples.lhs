@@ -17,9 +17,9 @@ janeDoe :: EDN
 janeDoe = mapOf
   [ #name, "Jane Doe"
   , #age, int 34
-  , #favoriteBooks, setOf ["a tale of two cities", "the kite runner"]
-  , #someTaggedValue, #myTag (float 72.234)
-  , #aFewOfMyFavoriteThings, [#rainDropsOnRoses, #whiskersOnKittens]
+  , #favorite_books, setOf ["a tale of two cities", "the kite runner"]
+  , #some_tagged_value, #my_tag (float 72.234)
+  , #a_few_of_my_favorite_things, [#rain_drops_on_roses, #whiskers_on_kittens]
   , #address, mapOf
     [ #state, "ny"
     , #zip, int 11225
