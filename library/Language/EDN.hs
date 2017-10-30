@@ -11,6 +11,7 @@ module Language.EDN
   -- | Language.EDN leverages IsList, IsString and IsLabel for lists, strings,
   -- keywords and tags. These simple constructures are provided for other data
   -- types.
+  , nil
   , int
   , float
   , char
@@ -89,6 +90,9 @@ instance Exts.IsList EDN where
   type Item EDN = EDN
   fromList = List
   toList = fromMaybe [] . preview _Seq
+
+nil :: EDN
+nil = Nil
 
 char :: Char -> EDN
 char = Character
