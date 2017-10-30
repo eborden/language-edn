@@ -7,15 +7,23 @@
 {-# LANGUAGE TypeFamilies #-}
 module Language.EDN
   ( EDN
+  -- * Constructors
+  -- | Language.EDN leverages IsList, IsString and IsLabel for lists, strings,
+  -- keywords and tags. These simple constructures are provided for other data
+  -- types.
   , int
   , float
+  , char
   , symbol
   , listOf
   , mapOf
   , vectorOf
   , setOf
+  -- * Traversals
   , key
+  -- * Lenses
   , keyAt
+  -- * Basic Prisms
   , _Boolean
   , _Character
   , _Float
@@ -29,6 +37,7 @@ module Language.EDN
   , _TagName
   , _TagVal
   , _Vector
+  -- * Genericized Traversals
   , _Seq
   ) where
 
@@ -80,6 +89,9 @@ instance Exts.IsList EDN where
   type Item EDN = EDN
   fromList = List
   toList = fromMaybe [] . preview _Seq
+
+char :: Char -> EDN
+char = Character
 
 int :: Int -> EDN
 int = Integer
