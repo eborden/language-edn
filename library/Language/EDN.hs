@@ -179,13 +179,12 @@ _Symbol = prism' Symbol $ \case
   Symbol xs -> Just xs
   _ -> Nothing
 
-_Tag :: Text -> Traversal' EDN Text
-_Tag tagName f edn =
-  case edn of
-    Tag n v
-      | tagName == n -> flip Tag v <$> f n
-      | otherwise -> pure edn
-    _ -> pure edn
+_Tag :: Text -> Prism' EDN EDN
+_Tag tagName = prism' (Tag tagName) $ \case
+  Tag n v
+    | tagName == n -> Just v
+    | otherwise -> Nothing
+  _ -> Nothing
 
 _TagName :: Traversal' EDN Text
 _TagName f edn =
