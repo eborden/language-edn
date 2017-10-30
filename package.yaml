@@ -1,0 +1,27 @@
+name: language-edn
+
+dependencies:
+  - base
+  - containers
+  - hashable
+  - unordered-containers
+  - text
+  - vector
+  - vector-instances
+  - ghc-prim
+  - lens
+
+ghc-options: -Wall
+
+library:
+  source-dirs: library
+
+executables:
+  examples:
+    main: Examples.lhs
+    ghc-options: -Wall -pgmL markdown-unlit
+    source-dirs:
+      - examples
+    dependencies:
+      - language-edn
+      - markdown-unlit
