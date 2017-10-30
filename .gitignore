@@ -1,0 +1,8 @@
+.stack-work
+.flow-work
+\#*#
+*.log
+*.hoo
+**/client_session_key.aes
+*.cabal
+*.prof
