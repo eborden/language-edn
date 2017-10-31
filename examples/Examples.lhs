@@ -10,8 +10,9 @@ derivitive of Clojure's information model. More information can be found here:
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import Control.Lens (preview, set)
+import Control.Lens (preview, set, over)
 import Language.EDN
+import qualified Data.Text as Text
 
 janeDoe :: EDN
 janeDoe = mapOf
@@ -33,4 +34,5 @@ main = do
   print (preview (key #address . key #zip . _Integer) janeDoe)
   print (set (key #address . key #zip . _Integer) 11237 janeDoe)
   print (set (keyAt #height) (Just (float 56.4)) janeDoe)
+  print (over (key #a_few_of_my_favorite_things . _Seq . traverse . _Keyword) Text.toUpper janeDoe)
 ```
