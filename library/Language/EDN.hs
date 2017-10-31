@@ -203,11 +203,10 @@ _Vector = prism' Vector $ \case
   Vector xs -> Just xs
   _ -> Nothing
 
-_Seq :: Traversal' EDN [EDN]
-_Seq f edn =
-  case edn of
-    List xs -> List <$> f xs
-    Vector xs -> List <$> f (toList xs)
-    Set xs -> List <$> f (toList xs)
-    Map ms -> List <$> f (toList ms)
-    _ -> pure edn
+_Seq :: Prism' EDN [EDN]
+_Seq = prism' List $ \case
+  List xs -> Just xs
+  Vector xs -> Just $ toList xs
+  Set xs -> Just $ toList xs
+  Map ms -> Just $ toList ms
+  _ -> Nothing
